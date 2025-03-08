@@ -38,7 +38,7 @@ def extract_symptoms(text):
 
     return symptoms if symptoms else filtered_words  # If no symptoms detected, return filtered words
 
-# API endpoint
+# API endpoint for symptom extraction
 @app.route('/extract', methods=['POST'])
 def extract():
     data = request.json
@@ -49,6 +49,11 @@ def extract():
 
     symptoms = extract_symptoms(user_text)
     return jsonify({"symptoms": symptoms})
+
+# Health check endpoint
+@app.route('/')
+def home():
+    return "✅ Symptom Extractor API is running!", 200
 
 # Run locally
 if __name__ == '__main__':
