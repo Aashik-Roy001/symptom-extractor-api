@@ -3,3 +3,8 @@ spacy[transformers]
 nltk
 deep-translator
 gunicorn
+scikit-learn  # Required for RandomForestClassifier
+numpy         # Required for numerical operations
+pandas        # Required for handling data
+boto3
+
