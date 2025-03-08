@@ -1,10 +1,5 @@
 flask
-indic-transliteration
-nltk
 spacy
-scispacy
-en-core-web-sm
-en-core-sci-sm
+nltk
+deep-translator
 gunicorn
-googletrans==4.0.0-rc1
-
