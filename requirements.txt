@@ -1,0 +1,8 @@
+flask
+indic-transliteration
+nltk
+spacy
+scispacy
+en-core-web-sm
+en-core-sci-sm
+gunicorn
