@@ -2,27 +2,25 @@ from flask import Flask, request, jsonify
 import spacy
 import nltk
 from nltk.corpus import stopwords
-from googletrans import Translator  # Use Google Translate API
+from deep_translator import GoogleTranslator  # More reliable than googletrans
 
 # Initialize Flask app
 app = Flask(__name__)
 
-# Load NLP model
-nlp = spacy.load("en_core_web_sm")  # Use "en_core_sci_sm" for medical NLP
+# Load NLP model (use a medical model if possible)
+nlp = spacy.load("en_core_web_sm")  # Consider using "en_core_sci_sm" for better accuracy
 
-# Load stopwords (ensure this is installed in requirements.txt)
+# Load stopwords (ensure NLTK stopwords are downloaded)
 nltk.download('stopwords')
 stop_words = set(stopwords.words('english'))
-
-# Initialize Translator
-translator = Translator()
 
 # Function to transliterate Hinglish to English
 def transliterate_text(text):
     try:
-        translated = translator.translate(text, src="auto", dest="en")
-        return translated.text
-    except:
+        translated = GoogleTranslator(source="auto", target="en").translate(text)
+        return translated
+    except Exception as e:
+        print(f"Translation failed: {e}")
         return text  # Return original text if translation fails
 
 # Function to clean text and extract symptoms
