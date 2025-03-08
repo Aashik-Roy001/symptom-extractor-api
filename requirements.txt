@@ -1,5 +1,5 @@
 flask
-spacy
+spacy[transformers]
 nltk
 deep-translator
 gunicorn
