@@ -6,3 +6,5 @@ scispacy
 en-core-web-sm
 en-core-sci-sm
 gunicorn
+googletrans==4.0.0-rc1
+
