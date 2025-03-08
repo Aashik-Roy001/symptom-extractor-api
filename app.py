@@ -2,15 +2,15 @@ from flask import Flask, request, jsonify
 import spacy
 import nltk
 from nltk.corpus import stopwords
-from deep_translator import GoogleTranslator  # More reliable than googletrans
+from deep_translator import GoogleTranslator  # Use Deep Translator
 
 # Initialize Flask app
 app = Flask(__name__)
 
-# Load NLP model (use a medical model if possible)
-nlp = spacy.load("en_core_web_sm")  # Consider using "en_core_sci_sm" for better accuracy
+# Load NLP model
+nlp = spacy.load("en_core_web_sm")  # Use "en_core_sci_sm" for medical NLP
 
-# Load stopwords (ensure NLTK stopwords are downloaded)
+# Load stopwords (ensure this is installed in requirements.txt)
 nltk.download('stopwords')
 stop_words = set(stopwords.words('english'))
 
@@ -19,8 +19,7 @@ def transliterate_text(text):
     try:
         translated = GoogleTranslator(source="auto", target="en").translate(text)
         return translated
-    except Exception as e:
-        print(f"Translation failed: {e}")
+    except:
         return text  # Return original text if translation fails
 
 # Function to clean text and extract symptoms
